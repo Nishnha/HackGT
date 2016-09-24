@@ -68,8 +68,12 @@ $(document).ready(function(){
 
   var printDate = function(){
 
+    if(date.getMinutes() < 10)
+      var min = "0" + date.getMinutes();
+    if(date.getHours() > 12)
+      var hours = date.getHours()-12
     var s = "" + epochToMonth(date.getMonth()) + " " +date.getDay() + ", "
-            + date.getFullYear() + "  " + date.getHours() + ":" + date.getMinutes();
+            + date.getFullYear() + "  " + date.getHours() + ":" + min;
     return s;
   };
 addNotification(0,"Device");
