@@ -4,17 +4,17 @@ $(document).ready(function(){
     var date = new Date(timeStamp*1000);
     switch (notifType) {
       case 0://Neutral
-        $('body').append('<div class=\'notif-bar\'><div class=\"notif-message\"'
+        $('.notif-page').append('<div class=\'notif-bar\'><div class=\"notif-message\"'
          + ">" + deviceName + ' has been opened <\/div><div class=\"notif-timestamp\">'
           + printDate(date) + '<\/div> <\/div>');
         break;
       case 1://green
-        $('body').append('<div class=\'notif-bar approved\'><div class=\"notif-message\"'
+        $('.notif-page').append('<div class=\'notif-bar approved\'><div class=\"notif-message\"'
          + ">" + deviceName + ' has been opened <\/div><div class=\"notif-timestamp\">'
           + printDate(date) + '<\/div> <\/div>');
         break;
       case 2://red
-        $('body').append('<div class=\'notif-bar not-approved\'><div class=\"notif-message\"'
+        $('.notif-page').append('<div class=\'notif-bar not-approved\'><div class=\"notif-message\"'
          + ">" + deviceName + ' has been opened without permission<\/div><div class=\"notif-timestamp\">'
           + printDate(date) + '<\/div> <\/div>');
         break;
@@ -72,14 +72,21 @@ $(document).ready(function(){
   var printDate = function(epoch){
     var min = epoch.getMinutes();
     var hours = epoch.getHours();
+    var extension = "a.m.";
     if(epoch.getMinutes() < 10)
       var min = "0" + epoch.getMinutes();
-    if(epoch.getHours() > 12)
+    if(epoch.getHours() > 12){
       hours = hours - 12;
+      min +=" p.m.";
+    } else min +=" " + extension;
     if(hours < 10)
       hours = " " + hours;
     var s = "" + epochToMonth(epoch.getMonth()) + " " +epoch.getDay() + ", "
-            + epoch.getFullYear() + "  " + hours + ":" + min;
+            + epoch.getFullYear() + " &nbsp &nbsp" + hours + ":" + min;
     return s;
   };
+  addNotification(0,"Device",148588102);
+  addNotification(2,"Device",148568102);
+  addNotification(1,"Device",148568102);
+
 });
